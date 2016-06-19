@@ -46,14 +46,12 @@
             <Label x:Name="label2" Content="Shifts" HorizontalAlignment="Left" Margin="29,428,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Label x:Name="label3" Content="Departments" HorizontalAlignment="Left" Margin="29,511,0,0" VerticalAlignment="Top" Foreground="White"/>
             <Button x:Name="button" Content="Add Record" Grid.Column="1" HorizontalAlignment="Left" Margin="256,56,0,0" VerticalAlignment="Top" Width="88" Command="{Binding ShowAddEmployeeDepartmentHistoryWindowCommand}" Foreground="White" Background="Black" Style="{StaticResource ButtonStyle}"/>
-            <Button x:Name="button_Copy" Content="Edit Record" Grid.Column="1" HorizontalAlignment="Left" Margin="256,91,0,0" VerticalAlignment="Top" Width="88" Foreground="White" Background="Black" Style="{StaticResource ButtonStyle}"/>
-            <Button x:Name="button_Copy1" Content="Delete Record" Grid.Column="1" HorizontalAlignment="Left" Margin="256,125,0,0" VerticalAlignment="Top" Width="88" Foreground="White" Background="Black" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="button_Copy" Content="Edit Record" Grid.Column="1" HorizontalAlignment="Left" Margin="256,91,0,0" VerticalAlignment="Top" Width="88" Command="{Binding ShowEditRecordWindowCommand}" Foreground="White" Background="Black" Style="{StaticResource ButtonStyle}"/>
+            <Button x:Name="button_Copy1" Content="Delete Record" Grid.Column="1" HorizontalAlignment="Left" Margin="256,125,0,0" VerticalAlignment="Top" Width="88" Command="{Binding DeleteRecordCommand}" Foreground="White" Background="Black" Style="{StaticResource ButtonStyle}"/>
         </Grid>
-        <Border Name="childWindow" DataContext="{Binding ChildWindowManager.Instance, Source={StaticResource Locator}}" Visibility="{Binding WindowVisibility}" Background="#88000000" HorizontalAlignment="Left" Width="1016">
+        <Border x:Name="childWindow" DataContext="{Binding ChildWindowManager.Instance, Source={StaticResource Locator}}" Visibility="{Binding WindowVisibility}" Background="#88000000" HorizontalAlignment="Left" Width="1016">
             <ContentControl Content="{Binding XmlContent}"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-
-            </ContentControl>
+        		HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         </Border>
     </Grid>
 </Window>

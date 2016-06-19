@@ -27,7 +27,6 @@ namespace WPF.Common
                 }
                 return instance;
             }
-
         }
 
         private Visibility windowVisibility;

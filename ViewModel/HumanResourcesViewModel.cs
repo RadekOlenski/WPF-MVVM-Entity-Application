@@ -7,6 +7,20 @@ namespace WPF.ViewModel
 {
     public class HumanResourcesViewModel : BaseViewModel
     {
+
+        private static HumanResourcesViewModel instance;
+        public static HumanResourcesViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new HumanResourcesViewModel();
+                }
+                return instance;
+            }
+        }
+
         #region Fields
         private EmployeeDepartmentHistory selectedDepartmentHistory;
         private ObservableCollection<EmployeeDepartmentHistory> employeeDepartmentHistory;
@@ -112,7 +126,9 @@ namespace WPF.ViewModel
 
         public void RefreshEmployeeDepartmentHistoryList()
         {
+            //EmployeeDepartmentHistory = UpdateEmployeeDepartmentHistory();
             CollectionViewSource.GetDefaultView(EmployeeDepartmentHistory).Refresh();
+            NotifyPropertyChanged("EmployeeDepartmentHistory");
         }
 
         public void NotifyUpdateLists()

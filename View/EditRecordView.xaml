@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="WPF.View.EditRecordView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF.View"
+             mc:Ignorable="d"  
+             Height="300" Width="300">
+    <Grid Background="White" Margin="0,0,-96,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Content="Edit Employee Department History Entry" HorizontalAlignment="Left" Margin="82,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="225"/>
+        <Label x:Name="label2_Copy2" Content="End Date" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,64,0,0"/>
+        <DatePicker x:Name="endDatePicker" SelectedDate="{Binding EndDate, Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="169,64,0,0" Width="178"/>
+        <Button x:Name="saveButton" Command="{Binding SaveCommand}" Content="Save " HorizontalAlignment="Left" Margin="98,0,0,28" VerticalAlignment="Bottom" Width="75" Background="Black" Foreground="White"/>
+        <Button x:Name="button" Command="{Binding CancelCommand}" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="25,252,0,0" VerticalAlignment="Top" Width="75" Foreground="White" Background="Black"/>
+        <Label x:Name="label3" Content="{Binding ErrorMessage}" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="109,220,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="177" Foreground="Red"/>
+    </Grid>
+</UserControl>

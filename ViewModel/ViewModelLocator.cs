@@ -28,6 +28,7 @@ namespace WPF.ViewModel
             SimpleIoc.Default.Register<HumanResourcesViewModel>();
             SimpleIoc.Default.Register<AddEmployeeDepartmentHistoryViewModel>();
             SimpleIoc.Default.Register<ChildWindowManager>();
+            SimpleIoc.Default.Register<EditRecordViewModel>();
         }
 
         public MainViewModel Main
@@ -59,6 +60,13 @@ namespace WPF.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ChildWindowManager>();
+            }
+        }
+        public EditRecordViewModel EditRecord
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditRecordViewModel>();
             }
         }
 

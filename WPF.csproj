@@ -88,6 +88,8 @@
     <Compile Include="Common\ChildWindowManager.cs" />
     <Compile Include="ViewModel\AddEmployeeDepartmentHistoryViewModel.cs" />
     <Compile Include="ViewModel\AddHistoryWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditRecordViewModel.cs" />
+    <Compile Include="ViewModel\EditRecordWindowViewModel.cs" />
     <Compile Include="ViewModel\HumanResourcesViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -96,6 +98,9 @@
     </Compile>
     <Compile Include="View\DepartmentListView.xaml.cs">
       <DependentUpon>DepartmentListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditRecordView.xaml.cs">
+      <DependentUpon>EditRecordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EmployeeDepartmentHistoryListView.xaml.cs">
       <DependentUpon>EmployeeDepartmentHistoryListView.xaml</DependentUpon>
@@ -123,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DepartmentListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

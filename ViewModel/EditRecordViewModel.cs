@@ -5,63 +5,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace WPF.ViewModel
 {
-    public class AddEmployeeDepartmentHistoryViewModel : BaseViewModel
+    public class EditRecordViewModel : BaseViewModel
     {
         public event Action<EmployeeDepartmentHistory> Closed;
 
-        public AddEmployeeDepartmentHistoryViewModel()
+        public EditRecordViewModel(EmployeeDepartmentHistory selectedRecord)
         {
+            this.selectedRecord = selectedRecord;
             saveCommand = new RelayCommand(() => SaveHistoryEntry());
             cancelCommand = new RelayCommand(() => CloseWindow());
+            UpdateProperties();
+        }
+
+        private void UpdateProperties()
+        {
+            this.EndDate = selectedRecord.EndDate;
         }
 
         #region Fields
-        private int businessEntityID;
-        private short departmentID;
-        private DateTime startDate;
-        private byte shiftID;
+        private EmployeeDepartmentHistory selectedRecord;
         private DateTime? endDate;
         #endregion
 
         #region Properties
         public string ErrorMessage { get; set; }
 
-        public int BusinessEntityID
+        public EmployeeDepartmentHistory SelectedRecord
         {
             get
             {
-                return businessEntityID;
+                return selectedRecord;
             }
             set
             {
-                businessEntityID = value;
-                NotifyPropertyChanged("BusinessEntityID");
+                selectedRecord = value;
+                NotifyPropertyChanged("SelectedRecord");
             }
-        }
 
-        public short DepartmentID
-        {
-            get { return departmentID; }
-            set
-            {
-                departmentID = value;
-                NotifyPropertyChanged("DepartmentID");
-            }
-        }
-
-        public DateTime StartDate
-        {
-            get { return startDate; }
-            set
-            {
-                startDate = value;
-                NotifyPropertyChanged("StartDate");
-            }
         }
 
         public DateTime? EndDate
@@ -74,15 +58,6 @@ namespace WPF.ViewModel
             }
         }
 
-        public byte ShiftID
-        {
-            get { return shiftID; }
-            set
-            {
-                shiftID = value;
-                NotifyPropertyChanged("ShiftID");
-            }
-        }
         #endregion
 
         #region Commands
@@ -106,21 +81,14 @@ namespace WPF.ViewModel
         {
             if (Closed != null)
             {
-                EmployeeDepartmentHistory newEntry = new EmployeeDepartmentHistory();
-                {
-                    newEntry.BusinessEntityID = BusinessEntityID;
-                    newEntry.DepartmentID = DepartmentID;
-                    newEntry.StartDate = StartDate;
-                    newEntry.ShiftID = ShiftID;
-                    newEntry.EndDate = EndDate;
-                    newEntry.ModifiedDate = DateTime.Now;
-                }
+                    selectedRecord.EndDate = EndDate;
+                    selectedRecord.ModifiedDate = DateTime.Now;
                 try
                 {
-                    DataService.AddEmployeeDepartmentHistoryEntity(newEntry);
+                    DataService.EditEmployeeDepartmentHistoryEntity(selectedRecord);
                     NotifyPropertyChanged("EmployeeDepartmentHistory");
                     HumanResourcesViewModel.Instance.RefreshEmployeeDepartmentHistoryList();
-                    Closed(newEntry);
+                    Closed(selectedRecord);
 
                 }
                 catch (Exception e)
@@ -137,9 +105,5 @@ namespace WPF.ViewModel
             Closed(new EmployeeDepartmentHistory());
         }
         #endregion
-
-
     }
-
-
 }
